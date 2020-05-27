@@ -18,7 +18,7 @@
 
 int *getBoard();
 bool solve(int *list);
-
+bool isValid(int number, int index, int *list);
 
 int main(int argc, char **argv) {
 
@@ -28,7 +28,8 @@ int main(int argc, char **argv) {
     // solve the board
     bool solved = solve(list);
 
-    if (solve) {
+    // print the board
+    if (solved) {
         // solved, print the board
         for (int i=0; i<81; i++){
             printf("%d ", list[i]);
@@ -88,20 +89,71 @@ int *getBoard(){
     return list;
 }
 
+// changes the list and returns true if solved
+bool solve(int *list) {
+    // iterate through the 81 indexes
+    for (int i=0; i<81; i++){
+        if (list[i] == 0) {
+            for (int j=1; j < 10; j++) {
+                if (isValid(j, i, list)) {
+                    // change the list
+                    list[i] = j;
 
+                    //try to solve
+                    if (solve(list)) {
+                        // solved
+                        return true;
+                    }
+                    else {
+                        // not solved, set back to 0
+                        list[i] = 0;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+    return true;
+}
 
+// returns true if number is valid
+bool isValid(int number, int index, int *list) {
+    // indexes: 0-80
+    // rows: 0-8
+    // columns: 0-8
+    // boxes: 0-2
 
-// bool solve(hashtable_t *board) {
+    // check row
+    int start = 9 * (index / 9);
+    for (int c = start; c < start+9; c++) {
+        if (list[c] == number) {
+            return false;
+        }
+    }
 
-//     // iterate through the 81 indexes
-//     for (int i=0; i<82; i++){
+    // check column
+    for (int i = (index % 9); i<81; i +=9) {
+        if (list[i] == number) {
+            return false;
+        }
+    }
 
+    // check box
+    int row_num = index/9;
+    int col_num = index % 9;
 
+    int box_row_num = row_num / 3;
+    int box_col_num = col_num / 3;
 
-//     }
+    // we want get the first index in the box (top left)
+    int box_index = (box_row_num * 9 * 3) + (box_col_num * 3);
 
-
-
-
-// }
-
+    for (int i=box_index; i<box_index + 19; i += 9) {
+        for (int j=0; j<3; j++){
+            if (list[i+j] == number) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
