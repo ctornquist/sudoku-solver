@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
-#include <ctype.h>y
+#include <ctype.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include "../libcs50/hashtable.h"
