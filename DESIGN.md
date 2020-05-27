@@ -15,22 +15,20 @@
 
 
 
-## Rename a file
+## Pseudo code for logic/algorithm flow
 
 
 
-## Delete a file
+## Dataflow through modules
 
 
 
-## Export a file
+## Major data structures
 
 
-
-
-# Synchronization
+## Testing plan
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyODQwOTUzMV19
+eyJoaXN0b3J5IjpbMTMxODIzNDA3Ml19
 -->
