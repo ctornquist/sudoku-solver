@@ -1,7 +1,10 @@
 /* 
- * solver - 
+ * solver.c
+ * 
+ * Program to read an unsolved sodoku puzzle in from stdin and print the solved puzzle. 
  *
  * CS50 - May 2020
+ * Tornquist, Palmer, Wagner and Krivickas
  *
  */
 
@@ -10,7 +13,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
-#include <ctype.h>
+#include <ctype.h>y
 #include <unistd.h>
 #include <stdbool.h>
 #include "../libcs50/hashtable.h"
@@ -48,7 +51,10 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-// loads the board from stdin to a list
+/* Loads the puzzle into an array from stdin. Assumes that blank spaces in the sudoku puzzle are
+ * filled in with zeros. Array is indexed from 0-80 with the first row 0-8, second row 9-17 and
+ * so on.
+ */
 int *getBoard(){
     // initialize list
     int *list = malloc(sizeof(int)*81);
@@ -89,15 +95,16 @@ int *getBoard(){
     return list;
 }
 
-// changes the list and returns true if solved
+/* User provides an array representing the sudoku board, function will update list to include the 
+ * numbers it solves for, returning true if it's solveable. 
+ */
 bool solve(int *list) {
     // iterate through the 81 indexes
     for (int i=0; i<81; i++){
-        if (list[i] == 0) {
-            for (int j=1; j < 10; j++) {
-                if (isValid(j, i, list)) {
-                    // change the list
-                    list[i] = j;
+        if (list[i] == 0) {                         // if there's a blank space
+            for (int j=1; j < 10; j++) {            // for each possible number 1-9
+                if (isValid(j, i, list)) {          // check if it's valid
+                    list[i] = j;                    // set that index to the valid number
 
                     //try to solve
                     if (solve(list)) {
@@ -105,25 +112,30 @@ bool solve(int *list) {
                         return true;
                     }
                     else {
-                        // not solved, set back to 0
+                        // not solved, set back to 0 and try next number
                         list[i] = 0;
                     }
                 }
             }
-            return false;
+            return false;                           //looped through 1-9 and none work
         }
     }
-    return true;
+    return true;                                    //looped through all indices and none are 0
 }
 
-// returns true if number is valid
+/* Checks if the number given is valid, ie does not exist in the row, column, or box. 
+ * 
+ * User provides the number to check, the index in which it occurs in the array (sudoku puzzle) 
+ * and the array that represents the puzzle itself. 
+ */
 bool isValid(int number, int index, int *list) {
     // indexes: 0-80
     // rows: 0-8
     // columns: 0-8
-    // boxes: 0-2
+    // boxes: 0-2 (the 3x3 boxes in each puzzle)
 
     // check row
+    // the first index in that row is the index/9
     int start = 9 * (index / 9);
     for (int c = start; c < start+9; c++) {
         if (list[c] == number) {
@@ -132,6 +144,7 @@ bool isValid(int number, int index, int *list) {
     }
 
     // check column
+    // the column number is the index mod 9
     for (int i = (index % 9); i<81; i +=9) {
         if (list[i] == number) {
             return false;
