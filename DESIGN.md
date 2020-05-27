@@ -7,11 +7,11 @@
 
 
 
-## Create files and folders
+## Inputs and Outputs
 
 
 
-## Switch to another file
+## Functional decomposition into modules
 
 
 
@@ -32,5 +32,5 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4NDQ5NTY1NV19
+eyJoaXN0b3J5IjpbMTgyODQwOTUzMV19
 -->
