@@ -30,4 +30,4 @@ all clean:
 	$(MAKE) -C libcs50 clean
 	$(MAKE) -C common clean
 	$(MAKE) -C solver clean
-	# $(MAKE) -C creator clean
+	$(MAKE) -C creator clean
