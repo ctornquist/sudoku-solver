@@ -4,8 +4,8 @@
 
 # variables
 CC = gcc
-CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ 
-FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ 
+CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ -I../common/
+FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ -I../common/ 
 PROG = solver
 
 # rules
@@ -13,10 +13,10 @@ all:
 	make solver
 
 
-solver: solver.o ../libcs50/libcs50-given.a
+solver: solver.o ../common/functions.o ../libcs50/libcs50-given.a
 	$(CC) $(CFLAGS) $^ -o $@ 
 
-solver.o: solver.c ../libcs50/hashtable.h ../libcs50/file.h
+solver.o: solver.c ../common/functions.h ../libcs50/file.h
 
 
 # phony targets
