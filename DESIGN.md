@@ -39,15 +39,25 @@ We anticipate the following modules or functions:
 *Creator*
 
 1. Generate solved puzzle
+
     2. Start with an empty board
+    
     3. Choose a random array index from 1-81 and put in a random number from 1-9
+    
     4. Call `solver` to fill the rest of the board
+    
 5. Remove 40 zeros preserving uniqueness of solution
+
     6. While zero-counter is less than 40
+    
         7. Go to a random cell and see how many numbers from 1-9 would be valid, possible entries at that location
+	
             8. If only one possible number
+	    
 	            9. Insert a zero into that cell
+		    
                 10. Increase zero-counter by 1
+		
             10. Else, leave cell untouched
 
 
@@ -55,18 +65,31 @@ We anticipate the following modules or functions:
 *Solver*
 
 1. read the data from stdin and initialize the array
+
 2. solve(list)
+
 	3. for each index 0-80
+	
 		4. if that index is 0
+		
 			5. for numbers 1-9
+			
 				6. if that number is valid (doesn't exist in row, column or box)
+				
 					7. add it to the list at the current index
+					
 					8. if solve(list)
+					
 						9. return true
+						
 					10. else
+					
 						11. set that index back to 0
+						
 			12. return false if looped through 1-9 and no number works
+			
 	13. if you've looped through each number and have no zeros, return true
+	
 14. if the puzzle is solvable, print it out
 
 
