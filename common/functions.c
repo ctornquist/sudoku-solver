@@ -146,3 +146,16 @@ bool isValid(int number, int index, int *list) {
     }
     return true;
 }
+
+/* Given an array that represents the board, print it out in 9x9 format
+ */
+void print_board(int *list){
+    if (list != NULL){
+        for (int i=0; i<81; i++){
+            printf("%d ", list[i]);
+            if ((i+1)%9 == 0) {
+                printf("\n");
+            }
+        }
+    }
+}

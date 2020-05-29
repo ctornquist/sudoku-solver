@@ -37,3 +37,9 @@ bool solve(int *list);
  * and the array that represents the puzzle itself. 
  */
 bool isValid(int number, int index, int *list);
+
+
+/* Given an array that represents the board, print it out in 9x9 format
+ * Ignores boards that are null
+ */
+void print_board(int *list);

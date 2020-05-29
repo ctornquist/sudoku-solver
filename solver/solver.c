@@ -30,12 +30,7 @@ int main(int argc, char **argv) {
     // print the board
     if (solved) {
         // solved, print the board
-        for (int i=0; i<81; i++){
-            printf("%d ", list[i]);
-            if ((i+1)%9 == 0) {
-                printf("\n");
-            }
-        }
+        print_board(list);
     }
     else {
         // not solvable
