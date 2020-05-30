@@ -6,6 +6,8 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ 
 FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ 
+CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ -I../common/
+FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ -I../common/ 
 PROG = creator
 
 # rules
@@ -13,10 +15,10 @@ all:
 	make creator
 
 
-solver: creator.o ../libcs50/libcs50-given.a
+creator: creator.o ../common/functions.o ../libcs50/libcs50-given.a
 	$(CC) $(CFLAGS) $^ -o $@ 
 
-# creator.o: creator.c ../libcs50/hashtable.h
+creator.o: creator.c ../common/functions.h ../libcs50/file.h
 
 
 # phony targets
