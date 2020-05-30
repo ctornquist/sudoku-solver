@@ -7,5 +7,5 @@ First, we ensured each of our individual modules were correct by creating unit t
 //CREATOR TESTING HERE
 
 ### Fuzz Testing
-
+We wrote ```fuzztest.c``` which takes an integer as a command line argument, and creates and solves that number of boards. The idea is that if we test a large number of times, if there is somehting wrong with the program we will get an error. ```fuzztest.c``` makes it easy to test both programs a lot very quickly. 
 
