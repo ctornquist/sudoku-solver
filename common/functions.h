@@ -43,3 +43,9 @@ bool isValid(int number, int index, int *list);
  * Ignores boards that are null
  */
 void print_board(int *list);
+
+
+/* Creates a board and returns the array that represents that board. The array will have
+ * 81 numbers that are filled in with 0s as blanks. It is a uniquely solveable sudoku board. 
+ */
+int *create_board();
