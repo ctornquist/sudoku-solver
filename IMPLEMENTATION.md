@@ -32,7 +32,7 @@ Notes: The indices are indexed 0-80, the columns and rows 0-8, and the boxes row
 solve: 
 Notes: This is implemented as a recursive function, and is well described in DESIGN.md. 
 
-//creator major functions here
+//CREATOR MAJOR FUNCTIONS HERE
 
 ### Data Structures
 The only major data structure is an array of integers used to represent the board. 
@@ -40,4 +40,4 @@ The only major data structure is an array of integers used to represent the boar
 ### Error Handling
 There are no command line args here, and solver assumes that the board was typed in or piped in correctly. 
 
-//creator error handling here
+//CREATOR ERROR HANDLING HERE
