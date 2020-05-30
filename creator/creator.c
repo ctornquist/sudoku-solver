@@ -88,11 +88,13 @@ int main(int argc, char **argv) {
         
         // [a] while counter < 40 (insert 40 zeros)
         int count_zero = 0;
-        while( count_zero < 40){
+        int index = 0;
+        while(count_zero < 40){
             
             // go to random cell and count # of valid possible entries 1-9
-            int rand_cell = rand() % 81;                // gives rand_cell betw 0-80
-            
+            //int rand_cell = rand() % 81;                // gives rand_cell betw 0-80
+            int rand_cell = index;
+
             if (list[rand_cell] != 0){
                 int previous = list[rand_cell];
                 list[rand_cell] = 0;
@@ -113,7 +115,7 @@ int main(int argc, char **argv) {
                 if(count_valid == 1){
                     //list[rand_cell] = 0;
                     count_zero++;                       // increment to next cell if zero is inserted
-                    fprintf(stdout, " ~ count_zero = %d ~\n", count_zero);
+                    //fprintf(stdout, " ~ count_zero = %d ~\n", count_zero);
                 
                 } else {
 
@@ -123,18 +125,14 @@ int main(int argc, char **argv) {
 
             }
             
+            index++;
         }
 
     
 
         // print the board
         fprintf(stdout, "\n****** print board with zeros ******\n");
-        for (int i=0; i<81; i++){
-            printf("%d ", list[i]);
-            if ((i+1)%9 == 0) {
-                printf("\n");
-            }
-        }
+        print_board(list);
     
 
     
