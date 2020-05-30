@@ -1,4 +1,7 @@
-// unit tests for functions.h
+/* functionstest.c  May 2020
+ * A collection of unit tests to ensure the correctness of the functions in functions.c. 
+ * Tests the getBoard(), isValid() and solve() functions. 
+ */
 
 #define _GNU_SOURCE 
 #include<stdio.h>
