@@ -22,7 +22,7 @@
 int main(int argc, char **argv) {
 
     // load the board into a list
-    int *list = getBoard();
+    int *list = getBoard(stdin);
 
     // solve the board
     bool solved = solve(list);
