@@ -18,7 +18,7 @@
 #include <stdbool.h>
 #include "../libcs50/file.h"
 
-int *getBoard();
+int *getBoard(FILE *fp);
 bool solve(int *list);
 bool isValid(int number, int index, int *list);
 
@@ -28,7 +28,7 @@ bool isValid(int number, int index, int *list);
  * filled in with zeros. Array is indexed from 0-80 with the first row 0-8, second row 9-17 and
  * so on.
  */
-int *getBoard(){
+int *getBoard(FILE *fp){
     // initialize list
     int *list = malloc(sizeof(int)*81);
     
@@ -39,7 +39,7 @@ int *getBoard(){
     while(read) {
         // get the line
         char *entry;
-        entry = freadlinep(stdin);
+        entry = freadlinep(fp);
         if (entry == NULL){
             break;
         }
@@ -64,6 +64,9 @@ int *getBoard(){
 
         free(entry);
         free(str);
+    }
+    if (count != 80) {
+        printf("warning: board does not have 81 numbers\n");
     }
     return list;
 }

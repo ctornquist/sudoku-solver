@@ -22,7 +22,7 @@
  * blank spaces in the sudoku puzzle are filled in with zeros. Array is indexed from 0-80 with
  * the first row 0-8, second row 9-17 and so on.
  */
-int *getBoard();
+int *getBoard(FILE *fp);
 
 //*************** solve ***************//
 /* User provides an array representing the sudoku board, function will update list to include the 
