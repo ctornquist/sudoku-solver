@@ -31,7 +31,7 @@ test:
 	#rm -f core
 
 ############## clean  ##########
-all clean:
+clean:
 	rm -f *~ *.o *.dSYM
 	rm -f TAGS
 	$(MAKE) -C libcs50 clean
