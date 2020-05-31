@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
         // Print generated sudoku board
         print_board(board);
 
-            free(board);
+        free(board);
     }
 
     // Check if argument was "solve"
