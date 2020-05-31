@@ -5,7 +5,7 @@ A Sudoku puzzle is a 9x9 grid of cells, furhter divided into 9 3x3 grids.  Numbe
 2. Only once in every column
 3. Only once in every 3x3 squared region
 
-Sudoku `creator` module creates a 9x9 puzzle with 40 numbers missing such that the puzzle will have a unique solution.  The `solver` module finds a solution of a given puzzle, according to the rules above.
+Sudoku `creator` module creates a 9x9 puzzle with 40 numbers missing such that the puzzle will have a unique solution.  The `solver` module finds a solution of a given puzzle, according to the rules above. The `sudoku` module runs the `creator` followed by the `solver`.
 
 
 ### User Interface
@@ -102,13 +102,14 @@ Sudoku:
 
 Creator:
 
-* *generateBoard*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
+* *create_board*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
 
 Solver:
 
 * *getBoard*, which loads the puzzle into an array from stdin
 * *solve*, which solves provided Sudoku board
-* *isValid*, Check if given number does not already exist in row, column, or 3x3 grid
+* *isValid*, check if given number does not already exist in row, column, or 3x3 grid
+* *print_board*, prints the board.
 
 
 ### Testing plan

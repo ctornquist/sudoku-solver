@@ -1,7 +1,7 @@
 # Sudoku Project, May 2020
 
 
-### Unit Testing
+### Unit and Integration Testing
 
 For effective unit testing, the team wrote all creator and solver functions into the ```functions.h``` library (found in common). Then wrote ```creator.c``` and ```solver.c``` for seperate unit testing before compiling the two components into one, with ```sudoku.c```. Finally, we tested ```sudoku.c``` with a bash script titled ```testing.sh``` and piped its output to ```testing.out```.
 
@@ -11,7 +11,7 @@ First, we ensured each of our individual modules were correct by creating unit t
 *B. Unit testing for the creator:*
 The creator component relied heavily on solver modules, so after solver unit testing showed success the team only had create_board() left to test. Print statements within create_board() showed that the function successfully created a randomly filled board and subsequently added 40 zeros for a puzzle with a unique solution. The team tested for a unique solution during sudoku unit testing.
 
-*C. Unit testing for sudoku (ie. creator + solver):*
+*C. Integration testing for sudoku (ie. creator + solver):*
 ```testing.sh``` handled sudoku testing. First, it ran several different cases of commandline input. Then, it tested for memeory leaks. And finally, it compared output for ./sudoku solve after running it twice to make sure both solutions matched. Output showed they did so create_board() successfully generates a uniquely solvable puzzle. Ie. ```diff solved1 solved2``` had no output so both solutions matched.
 
 ### Fuzz Testing
