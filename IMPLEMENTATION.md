@@ -32,12 +32,34 @@ Notes: The indices are indexed 0-80, the columns and rows 0-8, and the boxes row
 solve: 
 Notes: This is implemented as a recursive function, and is well described in DESIGN.md. 
 
-//CREATOR MAJOR FUNCTIONS HERE
+create_board:
+1. Generate board of 81 zeros
+2. While four random numbers have not been placed
+    * Choose a random cell from 0-80 and a random value 1-9
+    * Call isValid to check that the number can be placed there
+    * If isValid returns true
+        * Insert that random value at that random cell
+3. Call solve on the current board
+4. Set current cell to 0
+4. While the number of zeros is less than 40
+    * Check that the current cell is not zero
+    * If current cell if not zero
+        * Loop over values 1-9
+        * If only one the 9 values are valid at the current cell
+            * Insert a zero at the current cell
+            * Increment count_zeros by 1
+            * Iterate to the next cell
+
+Note: Research at MIT has shown that all possible sudoku puzzles with 16 cells originally filled never have a unique solution.  Puzzles with 17 cells filled are thought to be the lowest number by which unique solutions can be found.  Therefore, for creating a sudoku puzzle with a unique solution at optimal run time efficiency, the creator module can simply check for possible values at a given cell and put a zero there only if one value returns true from `isValid` instead of running `solve` after each change and checking for a different solved board.
+
 
 ### Data Structures
 The only major data structure is an array of integers used to represent the board. 
 
 ### Error Handling
-There are no command line args here, and solver assumes that the board was typed in or piped in correctly. 
+Exit Codes for sudoku.c:
+* 1: Invalid number of arguments
+* 2: Error allocating memory for storing command as a variable
+* 3: Invalid command line: Must be either './sudoku create' or './sudoku solve'
 
-//CREATOR ERROR HANDLING HERE
+There are no command line args for the inividual `solver` and `creator` modules.  Solver assumes that the board was typed in or piped in correctly. 
