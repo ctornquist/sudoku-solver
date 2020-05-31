@@ -116,5 +116,5 @@ Solver:
 
 * *Integration Testing*: Assemble Sudoku and test as a whole using `testing.sh`
 * Test the program with invalid command line arguments to ensure that validation of parameters in command-line works correctly.
-* Unit tests for each funciton, testing the range of valid inputs
+* Unit tests for each function, testing the range of valid inputs
 * Fuzztesting using *creator* module 
