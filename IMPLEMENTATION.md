@@ -50,7 +50,7 @@ create_board:
             * Increment count_zeros by 1
             * Iterate to the next cell
 
-Note: Research at MIT has shown that all possible sudoku puzzles with 16 cells originally filled never had a unique solution.  Puzzles with 17 cells filled are thought to be the lowest number by which unique solutions can be found.  Therefore, for creating a sudoku puzzle with a unique solution at optimal run time efficiency, the creator module can simply check for possible values at a given cell and put a zero there only if one value returns true from `isValid` instead of running `solver` after each change and checking for a different solved board.
+Note: Research at MIT has shown that all possible sudoku puzzles with 16 cells originally filled never have a unique solution.  Puzzles with 17 cells filled are thought to be the lowest number by which unique solutions can be found.  Therefore, for creating a sudoku puzzle with a unique solution at optimal run time efficiency, the creator module can simply check for possible values at a given cell and put a zero there only if one value returns true from `isValid` instead of running `solve` after each change and checking for a different solved board.
 
 
 ### Data Structures
