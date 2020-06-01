@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
         // Print generated sudoku board
         print_board(board);
 
-            free(board);
+        free(board);
     }
 
     // Check if argument was "solve"
@@ -48,10 +48,12 @@ int main(int argc, char *argv[]){
         board = getBoard(stdin);
 
         // solve the board
-        bool solved = solve(board);
+        int num = 0;
+        int *solution_list = malloc(81*sizeof(int));
+        int solved = solve(board, solution_list, num);
 
         // print the board
-        if (solved) {
+        if (solved != 0) {
             // solved, print the board
             print_board(board);
         }
@@ -61,6 +63,7 @@ int main(int argc, char *argv[]){
         }
 
         free(board);
+        free(solution_list);
     }
 
     // Arguments was neither create nor solve
