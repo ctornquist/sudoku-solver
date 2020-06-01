@@ -28,7 +28,7 @@ int *getBoard(FILE *fp);
 /* User provides an array representing the sudoku board, function will update list to include the 
  * numbers it solves for, returning true if it's solveable. 
  */
-bool solve(int *list);
+int solve(int *list, int *num_sol); 
 
 //*************** isValid ***************//
 /* Checks if the number given is valid, ie does not exist in the row, column, or box. 

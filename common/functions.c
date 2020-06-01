@@ -76,7 +76,7 @@ int *getBoard(FILE *fp){
 /* User provides an array representing the sudoku board, function will update list to include the 
  * numbers it solves for, returning true if it's solveable. 
  */
-bool solve(int *list) {
+int solve(int *list, int *num_sol) {
     // iterate through the 81 indexes
     for (int i=0; i<81; i++){
         if (list[i] == 0) {                         // if there's a blank space
@@ -84,21 +84,29 @@ bool solve(int *list) {
                 if (isValid(j, i, list)) {          // check if it's valid
                     list[i] = j;                    // set that index to the valid number
 
-                    //try to solve
-                    if (solve(list)) {
-                        // solved
-                        return true;
-                    }
-                    else {
+                    //try to solve 
+                    if (solve(list, num_sol) == 1) {
+                        // solved 
+
+                        int *copy_list = malloc(81*sizeof(int));
+                        for (int k = 0; k < 81; k++){
+                            copy_list[k] = list[k];
+                        }
+                        return *num_sol;
+                    } 
+                    else if (solve(list, num_sol) > 1) {
+                        break;
+                    } else {
                         // not solved, set back to 0 and try next number
                         list[i] = 0;
                     }
                 }
             }
-            return false;                           //looped through 1-9 and none work
+            return *num_sol;                           //looped through 1-9 and none work, failed to find additional solution
         }
     }
-    return true;                                    //looped through all indices and none are 0
+
+    return *num_sol + 1;                                //looped through all indices and none are 0
 }
 
 
