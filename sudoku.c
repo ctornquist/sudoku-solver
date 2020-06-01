@@ -38,6 +38,19 @@ int main(int argc, char *argv[]){
         // Print generated sudoku board
         print_board(board);
 
+        // int count = 0;
+        // for (int i=0; i < 81; i++) {
+        //     if (board[i] == 0) {
+        //         count ++;
+        //     }
+        // }
+        // if (count < 40) {
+        //     printf("\n BOARD ONLY HAS %d ZEROS \n", count);
+        // }
+        // else {
+        //     printf("\n board has %d zeros \n", count);
+        // }
+
         free(board);
     }
 
@@ -48,12 +61,14 @@ int main(int argc, char *argv[]){
         board = getBoard(stdin);
 
         // solve the board
-        bool solved = solve(board);
+        int num = 0;
+        int *solution_list = malloc(81*sizeof(int));
+        int solved = solve(board, solution_list, num);
 
         // print the board
-        if (solved) {
+        if (solved != 0) {
             // solved, print the board
-            print_board(board);
+            print_board(solution_list);
         }
         else {
             // not solvable
@@ -61,6 +76,7 @@ int main(int argc, char *argv[]){
         }
 
         free(board);
+        free(solution_list);
     }
 
     // Arguments was neither create nor solve
