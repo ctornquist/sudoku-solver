@@ -21,6 +21,7 @@
 // board4 -> board for testing isValid
 // board5 -> unsolved board
 // board6 -> the board5 solution
+// board7 -> board with multiple solutions
 
 int main() {
 
@@ -103,12 +104,23 @@ int main() {
     printf("\n");
     printf("solve tests: \n");
 
-    // solve should return true
+    // test a board with only 1 solution:
+    // get the board
     FILE *fp5 = fopen("./testboards/board5", "r");
     int *board5 = getBoard(fp5);
     fclose(fp5);
+
+    // initialize the solution list
+    int *solution_list = malloc(sizeof(int)*81);
+
+    // intialize number of solutions
+    const int num = 0;
+
+    // solve
+    const int result = solve(board5, solution_list, num);
+
     // get the solved board
-    if (solve(board5)) {
+    if (result == 1) {
         // get the answer
         FILE *fp6 = fopen("./testboards/board6", "r");
         int *board6 = getBoard(fp6);
@@ -116,7 +128,7 @@ int main() {
         // compare solved solution to real solution
         bool pass = true;
         for (int i=0; i<81; i++) {
-            if (board5[i] != board6[i]) {
+            if (solution_list[i] != board6[i]) {
                 printf("fail\n");
                 pass = false;
                 break;
@@ -125,7 +137,37 @@ int main() {
         if (pass) { printf("pass\n"); }
         free(board6);
     } else { printf("fail\n"); }
+
     free(board5);
+    free(solution_list);
+
+
+    // test a board with multiple solutions:
+    // get the board
+    FILE *fp7 = fopen("./testboards/board7", "r");
+    int *board7 = getBoard(fp7);
+    fclose(fp7);
+
+    // initialize the solution list
+    int *solution_list2 = malloc(sizeof(int)*81);
+
+    // intialize number of solutions
+    const int num2 = 0;
+
+    // solve
+    const int result2 = solve(board7, solution_list2, num2);
+
+    // print_board(solution_list2);
+    // printf("\n");
+    // printf("%d\n", result2);
+
+    if (result2 == 2) {
+        printf("pass\n");
+    }
+    else {printf("fail\n");}
+
+    free(board7);
+    free(solution_list2);
 
     return 0;
 }
