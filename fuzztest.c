@@ -23,6 +23,7 @@ int main(int argc, char **argv){
     }
 
     int n = atoi(argv[1]);
+    bool valid = true;
     for (int i = 0; i < n; i++){
         int *list = create_board();
         if (list != NULL) {
@@ -37,7 +38,20 @@ int main(int argc, char **argv){
             else {
                 fprintf(stdout, "Board not solveable\n");
             }
+
+            for (int j = 0; j < 80; j++){
+                valid = isValid(list[j], j, list);
+                if (valid == false){
+                    printf("Bad solution found\n");
+                    printf("idx: %d num: %d\n", j, list[j]);
+                    break;
+                }
+            }
+            if (valid == true){
+                printf("All numbers are valid.\n");
+            }
             printf("\n");
+            
         }
     }
 

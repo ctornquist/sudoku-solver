@@ -118,7 +118,7 @@ bool isValid(int number, int index, int *list) {
     // the first index in that row is the index/9
     int start = 9 * (index / 9);
     for (int c = start; c < start+9; c++) {
-        if (list[c] == number) {
+        if (list[c] == number && c != index) {
             return false;
         }
     }
@@ -126,7 +126,7 @@ bool isValid(int number, int index, int *list) {
     // check column
     // the column number is the index mod 9
     for (int i = (index % 9); i<81; i +=9) {
-        if (list[i] == number) {
+        if (list[i] == number && i != index) {
             return false;
         }
     }
@@ -143,7 +143,7 @@ bool isValid(int number, int index, int *list) {
 
     for (int i=box_index; i<box_index + 19; i += 9) {
         for (int j=0; j<3; j++){
-            if (list[i+j] == number) {
+            if (list[i+j] == number && i+j != index) {
                 return false;
             }
         }
