@@ -240,19 +240,8 @@ int *create_board(){
     solve(list, solution_list, num);
 
     // print the board
-    // if (solved) {
-    //     // solved, print the board
-    //     fprintf(stdout, "\n****** print randomly solved board ******\n");
-    //     for (int i=0; i<81; i++){
-    //         printf("%d ", list[i]);
-    //         if ((i+1)%9 == 0) {
-    //             printf("\n");
-    //         }
-    //     }
-    // } else {
-    //     // not solvable
-    //     printf("board cannot be solved\n");
-    // }
+    // fprintf(stdout, "\n****** print randomly solved board ******\n");
+    // print_board(list);
         
 
     // Part [2]: generate a unique solvable puzzle with 40 zeros

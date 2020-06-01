@@ -55,7 +55,7 @@ int main(int argc, char *argv[]){
         // print the board
         if (solved != 0) {
             // solved, print the board
-            print_board(board);
+            print_board(solution_list);
         }
         else {
             // not solvable
