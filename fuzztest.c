@@ -25,12 +25,14 @@ int main(int argc, char **argv){
     int n = atoi(argv[1]);
     for (int i = 0; i < n; i++){
         int *list = create_board();
+        int *solution_list = malloc(81*sizeof(int));
+        int num = 0;
         if (list != NULL) {
             printf("Randomly generated board with zeros: \n");
             print_board(list);
 
-            bool solved = solve(list);
-            if (solved){
+            int solved = solve(list, solution_list, num);
+            if (solved != 0){
                 printf("Solved board: \n");
                 print_board(list);
             }
