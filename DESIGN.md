@@ -50,17 +50,17 @@ We anticipate the following modules or functions:
 
     6. While zero-counter is less than 40
     
-        7. Go to a random cell, remove value at that cell and:
-	
-            8. If solver returns a non-unique solution
+    	7. Go to a random cell, remove value at that cell and:
 		
-		9. put back previous cell value
+		8. If solver returns a non-unique solution
 		
-	    10. If solver returns a unique solution
+			9. put back previous cell value
+		
+		10. If solver returns a unique solution
 	    	
-		11. insert zero at that cell
+			11. insert zero at that cell
 		
-		12. increase zero-counter by 1
+			12. increase zero-counter by 1
 
 *Solver*
 
