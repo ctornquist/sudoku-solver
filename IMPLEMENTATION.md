@@ -34,23 +34,24 @@ Notes: This is implemented as a recursive function, and is well described in DES
 
 create_board:
 1. Generate board of 81 zeros
-2. While four random numbers have not been placed
+2. While 10 random numbers have not been placed
     * Choose a random cell from 0-80 and a random value 1-9
     * Call isValid to check that the number can be placed there
     * If isValid returns true
         * Insert that random value at that random cell
 3. Call solve on the current board
-4. Set current cell to 0
 4. While the number of zeros is less than 40
-    * Check that the current cell is not zero
-    * If current cell if not zero
-        * Loop over values 1-9
-        * If only one the 9 values are valid at the current cell
-            * Insert a zero at the current cell
-            * Increment count_zeros by 1
-            * Iterate to the next cell
-
-Note: Research at MIT has shown that all possible sudoku puzzles with 16 cells originally filled never have a unique solution.  Puzzles with 17 cells filled are thought to be the lowest number by which unique solutions can be found.  Therefore, for creating a sudoku puzzle with a unique solution at optimal run time efficiency, the creator module can simply check for possible values at a given cell and put a zero there only if one value returns true from `isValid` instead of running `solve` after each change and checking for a different solved board.
+    * Go to a random cell from 0-80
+    * If cell is not zero
+        * Store previous value and current board before passing into solver
+        * Passing current board into solver passing in an empty solution list
+        * If solver does not return 1 (i.e. non-unique solution)
+            * Copy stored board back in 
+            * Set value at random cell to previous stored value
+        * Else if solver returns 1 (i.e. unique solution)
+            * Copy stored board back in
+            * Set value at random cell to zero
+            * Increase number of zeros placed
 
 
 ### Data Structures
@@ -62,4 +63,4 @@ Exit Codes for sudoku.c:
 * 2: Error allocating memory for storing command as a variable
 * 3: Invalid command line: Must be either './sudoku create' or './sudoku solve'
 
-There are no command line args here, and solver assumes that the board was typed in or piped in correctly. 
+There are no command line args for the inividual `solver` and `creator` modules.  Solver assumes that the board was typed in or piped in correctly. 

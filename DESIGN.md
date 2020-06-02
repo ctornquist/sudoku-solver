@@ -5,7 +5,7 @@ A Sudoku puzzle is a 9x9 grid of cells, furhter divided into 9 3x3 grids.  Numbe
 2. Only once in every column
 3. Only once in every 3x3 squared region
 
-Sudoku `creator` module creates a 9x9 puzzle with 40 numbers missing such that the puzzle will have a unique solution.  The `solver` module finds a solution of a given puzzle, according to the rules above.
+Sudoku `creator` module creates a 9x9 puzzle with 40 numbers missing such that the puzzle will have a unique solution.  The `solver` module finds a solution of a given puzzle, according to the rules above. The `sudoku` module runs the `creator` followed by the `solver`.
 
 
 ### User Interface
@@ -50,16 +50,13 @@ We anticipate the following modules or functions:
 
     6. While zero-counter is less than 40
     
-        7. Go to a random cell and see how many numbers from 1-9 would be valid, possible entries at that location
+        7. Remove number at random cell and pass to solver
 	
-            8. If only one possible number
+            8. If solver returns non-unique solution
 	    
-	            9. Insert a zero into that cell
+	            9. Replace cell with original number
 		    
                 10. Increase zero-counter by 1
-		
-            10. Else, leave cell untouched
-
 
 
 *Solver*
@@ -102,18 +99,20 @@ Sudoku:
 
 Creator:
 
-* *generateBoard*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
+* *create_board*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
+* *copy_list*, which copies all the elements of a list into another list, without copying the list pointers
 
 Solver:
 
 * *getBoard*, which loads the puzzle into an array from stdin
 * *solve*, which solves provided Sudoku board
-* *isValid*, Check if given number does not already exist in row, column, or 3x3 grid
+* *isValid*, check if given number does not already exist in row, column, or 3x3 grid
+* *print_board*, prints the board.
 
 
 ### Testing plan
 
 * *Integration Testing*: Assemble Sudoku and test as a whole using `testing.sh`
 * Test the program with invalid command line arguments to ensure that validation of parameters in command-line works correctly.
-* Unit tests for each funciton, testing the range of valid inputs
+* Unit tests for each function, testing the range of valid inputs
 * Fuzztesting using *creator* module 
