@@ -50,16 +50,13 @@ We anticipate the following modules or functions:
 
     6. While zero-counter is less than 40
     
-        7. Go to a random cell and see how many numbers from 1-9 would be valid, possible entries at that location
+        7. Remove number at random cell and pass to solver
 	
-            8. If only one possible number
+            8. If solver returns non-unique solution
 	    
-	            9. Insert a zero into that cell
+	            9. Replace cell with original number
 		    
                 10. Increase zero-counter by 1
-		
-            10. Else, leave cell untouched
-
 
 
 *Solver*
@@ -110,6 +107,7 @@ Sudoku:
 Creator:
 
 * *create_board*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
+* *copy_list*, which copies all the elements of a list into another list, without copying the list pointers
 
 Solver:
 
