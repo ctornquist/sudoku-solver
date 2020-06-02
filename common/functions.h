@@ -49,3 +49,8 @@ void print_board(int *list);
  * 81 numbers that are filled in with 0s as blanks. It is a uniquely solveable sudoku board. 
  */
 int *create_board();
+
+/* Copies the value at each index of list2 into list1 without setting the pointers
+ * of list1 and list2 equal to each other
+ */
+void copy_list(int *list1, int *list2);

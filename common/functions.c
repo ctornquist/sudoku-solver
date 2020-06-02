@@ -18,10 +18,14 @@
 #include <stdbool.h>
 #include "../libcs50/file.h"
 #include <time.h>
+#include <math.h>
 
 int *getBoard(FILE *fp);
 const int solve(int *list, int *solution_list, const int num);
 bool isValid(int number, int index, int *list);
+void print_board(int *list);
+int *create_board();
+void copy_list(int *list1, int *list2);
 
 
 //*************** getBoard ***************//
@@ -177,6 +181,7 @@ bool isValid(int number, int index, int *list) {
     return true;
 }
 
+//*************** print_board ***************//
 /* Given an array that represents the board, print it out in 9x9 format
  */
 void print_board(int *list){
@@ -190,95 +195,94 @@ void print_board(int *list){
     }
 }
 
+//*************** create_board ***************//
 /* Creates a board and returns the array that represents that board. The array will have
  * 81 numbers that are filled in with 0s as blanks. It is a uniquely solveable sudoku board. 
  */
 int *create_board(){
-    // Part [1]: generate filled board
-    srand(time(NULL));
-
-    // [a] start with empty board        
+    // initialize empty board        
     int * list;
     list = (int*) calloc(81, sizeof(int)); // store puzzle as list of zeros
 
-    // print board of zeros
-    // fprintf(stdout, "\n****** print board of zeros ******\n");
-    // for (int i=0; i<81; i++){
-    //         printf("%d ", list[i]);
-    //         if ((i+1)%9 == 0) {
-    //             printf("\n");
-    //         }
-    // }
+    // set root for randomness
+    srand(time(NULL));
 
-    // [b] insert random numbers in random cells if they are valid
+    // insert valid random numbers into random cells
     int i = 0;
-    while (i < 5){
-        int rand_num = (rand() % 9) + 1; // % 9 gives you rand betw 0-8
-        //fprintf(stdout, "\nrand_num = %d\n", rand_num);
+    while (i < 10){
+        int rand_num = (rand() % 9) + 1; // store random value from 0-8
     
-        int rand_cell = rand() % 81; // gives rand_cell betw 0-80
-        //fprintf(stdout, "rand_cell = %d\n", rand_cell);
+        int rand_cell = rand() % 81; // store random cell from from 0-80
 
-
-       if(isValid(rand_num, rand_cell, list)){
+        // place random value in random cell if valid
+        if(isValid(rand_num, rand_cell, list)){
             list[rand_cell] = rand_num;
             i++;
         }   
     }
 
-
-    // print board with random number
-    // fprintf(stdout, "\n****** print board with random number ******\n");
-    // print_board(list);
-
-
-    // [c] use backtracking solver to fill the rest of the board
-    // initialize empty list
+    // initialize empty list for output of solver
     int * solution_list;
     solution_list = (int*) calloc(81, sizeof(int)); // store puzzle as list of zeros
     int num = 0;
     solve(list, solution_list, num);
 
-    // print the board
-    // fprintf(stdout, "\n****** print randomly solved board ******\n");
-    // print_board(list);
-        
+    // Copy over solution list to original list
+    for (int i=0; i < 81; i++) {
+        list[i] = solution_list[i];
+    }
 
-    // Part [2]: generate a unique solvable puzzle with 40 zeros
-        
-    // [a] while counter < 40 (insert 40 zeros)
+    // initialize list for storing original list before passing to solver
+    int *previous_list = (int*) calloc(81, sizeof(int));
     int count_zero = 0;
+
+    // loop until 40 zeros have been placed
     while(count_zero < 40){
             
-        // go to random cell and count # of valid possible entries 1-9
-        int rand_cell = rand() % 81;                // gives rand_cell betw 0-80
-        //int rand_cell = index;
+        // go to random cell between 0-80
+        int rand_cell = rand() % 81;
 
         if (list[rand_cell] != 0){
+            // store current list before passing it to solver
+            copy_list(previous_list, list);
+
+            // store previous value at cell in case sovler returns non-unique solution
             int previous = list[rand_cell];
             list[rand_cell] = 0;
-            //fprintf(stdout, " ~ list[rand_cell] != 0 ~\n");
                 
-            int * solution_list;
+            free(solution_list);
             solution_list = (int*) calloc(81, sizeof(int)); // initialize empty solution list
             int num = 0;
             int return_val;
             
             // if solve returns != 1 we put previous back, else leave 0 and increment count_zero
             if ((return_val = solve(list, solution_list, num)) != 1){
+                // copy back to original list with previous value at current random index
+                copy_list(list, previous_list);
                 list[rand_cell] = previous;
-            } else {
+            } 
+            else if (return_val == 1) {
+                // copy back original list with 0 at current random index
+                copy_list(list, previous_list);
+                list[rand_cell] = 0;
                 count_zero++;
             }
-            
-
-            //fprintf(stdout, "~ count_valid = %d ~\n", count_valid);
-
         }
 
     }
+    // free alloc'd memory
+    free(previous_list);
+    free(solution_list);
 
-    // fprintf(stdout, "\n****** print finished board ******\n");
     return list;
+}
 
+//*************** copy_list ***************//
+/* Copies the value at each index of list2 into list1 without setting the pointers
+ * of list1 and list2 equal to each other
+ */
+void copy_list(int *list1, int *list2) {
+    for (int i=0; i < 81; i++) {
+        list1[i] = list2[i];
+    }
 }

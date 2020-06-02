@@ -62,4 +62,4 @@ Exit Codes for sudoku.c:
 * 2: Error allocating memory for storing command as a variable
 * 3: Invalid command line: Must be either './sudoku create' or './sudoku solve'
 
-There are no command line args for the inividual `solver` and `creator` modules.  Solver assumes that the board was typed in or piped in correctly. 
+There are no command line args here, and solver assumes that the board was typed in or piped in correctly. 

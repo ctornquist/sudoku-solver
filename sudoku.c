@@ -15,13 +15,13 @@
 
 int main(int argc, char *argv[]){
 
-    // Check for correct number of parameters
+    // check for correct number of parameters
     if (argc != 2) {
         fprintf(stderr, "Error: Invalid Number of Arguments\n");
         return 1;
     }
 
-    // Store create or solve command as a variable
+    // store create or solve command as a variable
     char *command = malloc(strlen(argv[1]) * sizeof(char) + 1);
     if (command == NULL) {
         fprintf(stderr, "Error allocating memory for storing command as a variable\n");
@@ -30,18 +30,18 @@ int main(int argc, char *argv[]){
 
     strcpy(command, argv[1]);
 
-    // Check if argument was "create"
+    // check if argument was "create"
     if (strcmp(command, "create") == 0) {
-        // Generate board with unique solution with at least 40 zeros
+        // generate board with unique solution with at least 40 zeros
         int *board = create_board();
  
-        // Print generated sudoku board
+        // print generated sudoku board
         print_board(board);
 
         free(board);
     }
 
-    // Check if argument was "solve"
+    // check if argument was "solve"
     else if (strcmp(command, "solve") == 0) {
         // load the board into a list
         int *board = NULL;
@@ -66,14 +66,14 @@ int main(int argc, char *argv[]){
         free(solution_list);
     }
 
-    // Arguments was neither create nor solve
+    // arguments was neither create nor solve
     else {
         fprintf(stderr, "Command line should be either './sudoku create' or './sudoku solve'\n");
         return 3;
     }
 
 
-    // Free alloc'd memory
+    // free alloc'd memory
     free(command);    
 
     return 0;
