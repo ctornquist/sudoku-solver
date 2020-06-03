@@ -95,9 +95,14 @@ const int solve(int *list, int *solution_list, const int num) {
                 if (isValid(j, i, list)) {          // check if it's valid
                     list[i] = j;                    // set that index to the valid number
 
+
                     //try to solve
                     const int temp_num = curr_num;
                     int result = solve(list, solution_list, temp_num);
+
+                    #ifdef GRAPHICS
+                    printf("%d %d \n", i, list[i]);
+                    #endif
 
                     //  if result == num
                     if (result == curr_num) {
@@ -108,9 +113,13 @@ const int solve(int *list, int *solution_list, const int num) {
                     else if (result == 1) {
                         // update number, and keep searching
                         curr_num = result;
+                        #ifdef GRAPHICS
+                        printf("%d %d \n", i, list[i]);
+                        #endif
                         list[i] = 0;
                     }
                     // if result == 2, return
+
                     else {
                         return 2;
                     }
@@ -199,7 +208,6 @@ void print_board(int *list){
 /* Creates a board and returns the array that represents that board. The array will have
  * 81 numbers that are filled in with 0s as blanks. It is a uniquely solveable sudoku board. 
  */
-
 int *create_board(){
     // initialize empty board        
     int * list;
@@ -221,6 +229,7 @@ int *create_board(){
             i++;
         }   
     }
+    print_board(list);
 
     // initialize empty list for output of solver
     int * solution_list;
@@ -287,4 +296,3 @@ void copy_list(int *list1, int *list2) {
         list1[i] = list2[i];
     }
 }
-

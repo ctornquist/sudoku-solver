@@ -11,3 +11,6 @@ There are no assumptions for creator.
 
 ### Compilation
 To compile sudoku.c and build the solver and creator modules from the top level directory, run "make". To remove executables and test files, "make clean."
+
+### Final Video Link
+https://drive.google.com/file/d/1uwWQy2PlSnOHYwOoUfhw32c7Njj3RMz6/view?usp=sharing

@@ -4,6 +4,8 @@
 
 # variables
 CC = gcc
+CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ 
+FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ 
 CFLAGS = -Wall -pedantic -std=c11 -ggdb -I../libcs50/ -I../common/
 FCFLAGS = -Wall -pedantic -std=gnull -ggdb -I../libcs50/ -I../common/ 
 PROG = creator

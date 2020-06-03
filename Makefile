@@ -5,7 +5,7 @@ PROG = sudoku
 PROG1 = fuzztest
 OBJS = sudoku.o common/functions.o
 OBJS1 = fuzztest.o common/functions.o
-LLIBS = libcs50/libcs50-given.a
+LLIBS = libcs50/libcs50-given.a 
 LIBS = -lm
 MAKE = make
 
