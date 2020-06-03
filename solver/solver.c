@@ -25,12 +25,14 @@ int main(int argc, char **argv) {
     int *list = getBoard(stdin);
 
     // solve the board
-    bool solved = solve(list);
+    int num = 0;
+    int *solution_list = malloc(sizeof(int)*81);
+    int solved = solve(list, solution_list, num);
 
     // print the board
-    if (solved) {
+    if (solved != 0) {
         // solved, print the board
-        print_board(list);
+        print_board(solution_list);
     }
     else {
         // not solvable
@@ -38,6 +40,7 @@ int main(int argc, char **argv) {
     }
 
     free(list);
+    free(solution_list);
 
     return 0;
 }

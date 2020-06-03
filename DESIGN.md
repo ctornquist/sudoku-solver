@@ -50,47 +50,54 @@ We anticipate the following modules or functions:
 
     6. While zero-counter is less than 40
     
-        7. Go to a random cell and see how many numbers from 1-9 would be valid, possible entries at that location
-	
-            8. If only one possible number
-	    
-	            9. Insert a zero into that cell
-		    
-                10. Increase zero-counter by 1
+    	7. Go to a random cell, remove value at that cell and:
 		
-            10. Else, leave cell untouched
-
-
+		8. If solver returns a non-unique solution
+		
+			9. put back previous cell value
+		
+		10. If solver returns a unique solution
+	    	
+			11. insert zero at that cell
+		
+			12. increase zero-counter by 1
 
 *Solver*
 
 1. read the data from stdin and initialize the array
 
-2. solve(list)
+2. call solve(list, solution_list, num)
+	3. set curr num = num
 
-	3. for each index 0-80
+	4. for each index 0-80
 	
-		4. if that index is 0
+		5. if that index is 0
 		
-			5. for numbers 1-9
+			6. for numbers 1-9
 			
-				6. if that number is valid (doesn't exist in row, column or box)
+				7. if that number is valid (doesn't exist in row, column or box)
 				
-					7. add it to the list at the current index
+					8. add it to the list at the current index
+
+					9. recursively call solve() using a temporary value instead of num and save its value in result
 					
-					8. if solve(list)
+					10. if result equals curr num
 					
-						9. return true
+						11. it's not solved, set that index back to 0 
 						
-					10. else
+					12. else if result is 1
 					
-						11. set that index back to 0
+						13. set curr num equal to result
+						14. set that index back to 0
+					15. else
+						16. there are two solutions, so return 2
 						
-			12. return false if looped through 1-9 and no number works
+			17. return curr num if looped through 1-9 and no number works
 			
-	13. if you've looped through each number and have no zeros, return true
+	18. if it's your first solution (num = 0), copy list into solution list 
+	19. add one to to num  + return it (means you looped through all indices and none are 0)
 	
-14. if the puzzle is solvable, print it out
+20. if the puzzle is solvable (ie returns a non zero number), print it out
 
 
 
@@ -103,6 +110,7 @@ Sudoku:
 Creator:
 
 * *create_board*, which creates a randomly solved board using *solve* and inserts 40 zeros using *isValid*
+* *copy_list*, which copies all the elements of a list into another list, without copying the list pointers
 
 Solver:
 
