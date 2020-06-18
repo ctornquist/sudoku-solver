@@ -1,4 +1,6 @@
 # sudoku_solver
+Final project for CS50 Spring 2020 by Tornquist, Wagner, Palmer and Krivickas.
+
 
 ### Usage
 A sudoku puzzle has the numbers 1-9 in each column, row and 3x3 box such that they each only appear once. This module can both create sudoku puzzles and solve them. It uses zeros to indicate blank spaces in the board. It is broken up into three directories: creator, which creates the sudoku boards, solver, which solves them if possible, and a common directory which contains helper functions used by both. 
