@@ -12,7 +12,7 @@ There are no assumptions for creator.
 ### Compilation
 To compile sudoku.c and build the solver and creator modules from the top level directory, run "make". To remove executables and test files, "make clean."
 
-To create a board, run "./sudoku create". To type in a board + solve, run "./sudouku solve". One can also pipe the output from solve to create to do both in one step, i.e. "./sudoku create | ./sudoku solve". 
+To create a board, run "./sudoku create". To solve, run "./sudouku solve" (must type a board into stdin). One can also pipe the output from solve to create to do both in one step, i.e. "./sudoku create | ./sudoku solve". 
 
 ### Final Video Link
 https://drive.google.com/file/d/1uwWQy2PlSnOHYwOoUfhw32c7Njj3RMz6/view?usp=sharing
